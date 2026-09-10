@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import stat
 import struct
+import subprocess
 import tempfile
 import time
 import unittest
@@ -25,6 +26,24 @@ class WorkflowIntegrationTests(unittest.TestCase):
         self.root=Path(self.temporary.name).resolve()
         self.store=Store(self.root/'state')
         self.project=self.store.create_project('Integration','hailo10h','llm')['id']
+        # Terminal job state/lease release precedes process teardown. Windows
+        # cannot remove worker.log until the detached process closes its handle.
+        self.worker_processes=[]
+        original_popen=subprocess.Popen
+        def start_process(*args,**kwargs):
+            process=original_popen(*args,**kwargs)
+            self.worker_processes.append(process)
+            return process
+        self.enterContext(patch('pi_trainer.jobs.subprocess.Popen',side_effect=start_process))
+        self.addCleanup(self.wait_worker_processes)
+
+    def wait_worker_processes(self):
+        for process in self.worker_processes:
+            try:process.wait(timeout=20)
+            except subprocess.TimeoutExpired:
+                process.terminate()
+                process.wait(timeout=5)
+                self.fail('Test worker did not exit after its terminal job state')
 
     def dataset(self):
         source=self.root/'corpus.jsonl'

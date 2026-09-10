@@ -109,6 +109,7 @@ Alternatively install with `python -m pip install .` in a chosen environment. MC
 
 - [Architecture and provider boundaries](docs/architecture.md)
 - [Training and compiler setup](docs/training.md)
+- [Host validation without a 10H board](docs/host-validation.md)
 - [Deployment and Pi helper](docs/deployment.md)
 - [Existing image customisation](docs/images.md)
 - [LLM-Optimise reuse](docs/llm-optimise-reuse.md)
