@@ -45,3 +45,19 @@ Source commit `5be79afe267cdfd5a6023bae47230e19c0623b55` was tested on a physica
 Separate CPU and CUDA runs of `host_10h_smoke.py` passed vision training, ONNX comparison, train-only calibration, split separation, LoRA training, adapter reload/merge and generation. Maximum ONNX differences were 7.45e-9 (CPU) and 1.49e-8 (CUDA); maximum adapter merge differences were 6.71e-8 and 8.94e-8. Both generated eight tokens. These tiny synthetic fixtures establish pipeline operation, not useful model accuracy or comparative GPU performance. Downloaded evidence archives and model artifact hashes were verified; raw evidence remains local.
 
 Ubuntu 24.04 x86-64 under WSL was also checked for architecture and GPU visibility. No Hailo SDK was found in the environments checked. This was a WSL preflight only; the Linux model tests above ran in the ARM64 Docker container. Successful PyTorch CUDA execution does not establish Hailo SDK GPU compatibility, numerical emulation, HEF compilation or 10H execution.
+
+## Vendor SDK execution — 10 September 2026
+
+User-supplied vendor Docker images were loaded into the physical Windows workstation's Linux x86-64 Docker engine. All three targets completed the real application compiler worker with a generated Conv/ReLU/pooling ONNX fixture and 64 synthetic calibration samples, followed by native and quantised SDK emulation:
+
+| Target | DFC | HEF bytes | Native maximum absolute error vs NumPy | Quantised maximum absolute error vs NumPy |
+|---|---|---:|---:|---:|
+| Hailo-8L | 3.34.0 | 219,343 | 2.38e-7 | 0.001378 |
+| Hailo-8 | 3.34.0 | 259,257 | 2.38e-7 | 0.001378 |
+| Hailo-10H | 5.4.0 | 69,632 | 3.87e-7 | 0.001378 |
+
+Both emulation modes returned finite outputs with the expected shape. Native results passed the independent NumPy tolerance; quantised error was measured without an application-quality threshold. HailoRT's offline `parse-hef` also reported the expected compatibility: HAILO8L, HAILO8, and HAILO15H/HAILO10H respectively. Downloaded archive and HEF/output hashes were verified. The tested compiler worker SHA256 was `2cbe1a9c7196e3dc67c6f81c48b96ef333b15237117d694952bcb25e4123dbe0`.
+
+The first 10H run compiled successfully but exposed an emulation harness API mismatch. A complete fresh run passed after using the installed SDK's `ClientRunner.infer` API; the original failure evidence was preserved. All successful test containers exited normally and the SDK images remain available. No PCIe drivers were installed and no accelerator hardware was exercised.
+
+These results supersede the earlier missing-SDK blocker for these synthetic vision fixtures. They do not qualify a deployment model or custom LLM. DFC 5.4 documents LoRA compilation from Hailo-provided pre-optimised GenAI HARs, but explicitly does not support GenAI numerical emulation. A matching candidate, vendor assets and adequate compute resources are still required. See [SDK setup and reproduction](../docs/hailo-sdk-setup.md). Proprietary SDKs, manuals and generated model artifacts remain local and excluded from Git.

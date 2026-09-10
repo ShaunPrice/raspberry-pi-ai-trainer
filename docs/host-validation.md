@@ -32,7 +32,7 @@ The build downloads framework dependencies; execution is offline and does not ac
 
 ## Hailo emulation and compilation
 
-These require a compatible Hailo DFC installation and supported model-specific flow. They are marked blocked when absent. Hailo's vision Model Zoo documents numerical emulation; that does not establish a universal full-pipeline LLM emulator. Running the compiled GenAI HEF and measuring device performance requires access to a 10H.
+These require a compatible Hailo DFC installation and supported model-specific flow. They are marked blocked when absent. The supplied DFC 5.4 guide explicitly excludes GenAI from numerical emulation. Vision compilation and native/quantised emulation have now passed for synthetic fixtures on all three targets; see [SDK setup and recorded results](hailo-sdk-setup.md). Running the compiled GenAI HEF and measuring device performance requires access to a 10H.
 
 - [Hailo Model Zoo evaluation](https://github.com/hailo-ai/hailo_model_zoo/blob/master/docs/GETTING_STARTED.rst)
 - [Hailo GenAI prerequisites](https://github.com/hailo-ai/hailo_model_zoo_genai/blob/main/docs/USAGE.rst)

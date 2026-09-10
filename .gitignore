@@ -34,3 +34,7 @@ validation/*
 *.gguf
 *.img
 *.img.xz
+
+# Locally supplied proprietary vendor SDKs and drivers
+Hailo_SDK/
+Hailo-SDK/
