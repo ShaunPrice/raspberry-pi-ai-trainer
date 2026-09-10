@@ -1,0 +1,72 @@
+name: Hailo-10H Windows host validation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-host:
+    name: Windows CPU training and 10H preparation
+    runs-on: windows-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: pwsh
+    env:
+      PYTHONUNBUFFERED: '1'
+      PIP_DISABLE_PIP_VERSION_CHECK: '1'
+      HF_HUB_OFFLINE: '1'
+      TRANSFORMERS_OFFLINE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Record runner and validation boundaries
+        run: |
+          New-Item -ItemType Directory -Force validation/windows-host | Out-Null
+          $report = @{
+            schema = 'pi-trainer/windows-runner/v1'
+            runner_os = $env:RUNNER_OS
+            runner_arch = $env:RUNNER_ARCH
+            runner_image = $env:ImageOS
+            runner_image_version = $env:ImageVersion
+            windows_version = [System.Environment]::OSVersion.VersionString
+            powershell_version = $PSVersionTable.PSVersion.ToString()
+            python_version = (& python --version | Out-String).Trim()
+            execution = 'GitHub-hosted Windows CPU runner'
+            hardware_inference = 'not_run_no_attached_or_configured_Hailo_board'
+            hailo10h_emulation = 'not_provided'
+            hailo_sdk = 'not_installed_by_this_workflow'
+          }
+          $report | ConvertTo-Json -Depth 6 | Set-Content -Encoding utf8 validation/windows-host/runner.json
+          $report | ConvertTo-Json -Depth 6
+      - name: Install CPU training dependencies
+        run: |
+          python -m pip install --progress-bar off torch --index-url https://download.pytorch.org/whl/cpu 2>&1 | Tee-Object -FilePath validation/windows-host/install-torch.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --progress-bar off numpy pillow onnx transformers peft 2>&1 | Tee-Object -FilePath validation/windows-host/install-dependencies.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip install --progress-bar off . 2>&1 | Tee-Object -FilePath validation/windows-host/install-app.log
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python -m pip freeze | Set-Content -Encoding utf8 validation/windows-host/packages.txt
+      - name: Run complete unit test suite
+        if: ${{ !cancelled() }}
+        run: |
+          python -m unittest discover -s tests -v 2>&1 | Tee-Object -FilePath validation/windows-host/core-tests.log
+          exit $LASTEXITCODE
+      - name: Run portable Hailo-10H host smoke test
+        if: ${{ !cancelled() }}
+        run: |
+          python validation/host_10h_smoke.py --output validation/windows-host/model-test --device cpu 2>&1 | Tee-Object -FilePath validation/windows-host/host-smoke.log
+          exit $LASTEXITCODE
+      - name: Upload test evidence even on failure
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-10h-host-evidence-${{ github.run_id }}
+          path: validation/windows-host/
+          if-no-files-found: warn
+          retention-days: 14

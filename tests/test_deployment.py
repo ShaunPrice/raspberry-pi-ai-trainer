@@ -1,5 +1,6 @@
 import hashlib
 import json
+import os
 import stat
 import subprocess
 import sys
@@ -88,6 +89,7 @@ class DeploymentTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'version'):
                 pi_agent.check_device(manifest)
 
+    @unittest.skipIf(os.name == 'nt', 'Pi-side release selection uses POSIX fcntl; Windows host transport is tested separately')
     def test_stage_activate_and_atomic_rollback(self):
         first = self.bundle()
         self.model.write_bytes(b'second fixture')
@@ -119,6 +121,7 @@ class DeploymentTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 deployment._host({'host': host})
 
+    @unittest.skipIf(os.name == 'nt', 'Pi-side release selection uses POSIX fcntl; Windows host transport is tested separately')
     def test_benchmark_is_real_command_and_failure_not_success(self):
         b = self.bundle()
         base = self.root / 'agent'
@@ -139,6 +142,7 @@ class DeploymentTests(unittest.TestCase):
         self.assertEqual(pi_agent.read_state(base)['active'], 'a' * 32)
         self.assertEqual(list(base.glob('.state-*')), [])
 
+    @unittest.skipIf(os.name == 'nt', 'Pi-side release selection uses POSIX fcntl; Windows host transport is tested separately')
     def test_real_local_script_execution(self):
         scripts = self.root / 'scripts'
         scripts.mkdir()
@@ -175,6 +179,7 @@ class DeploymentTests(unittest.TestCase):
         model_class.return_value.release.assert_called_once()
         device_class.return_value.release.assert_called_once()
 
+    @unittest.skipIf(os.name == 'nt', 'Pi-side release selection uses POSIX fcntl; Windows host transport is tested separately')
     def test_hailo10h_vision_uses_real_benchmark_command(self):
         bundle = self.bundle(target='hailo10h', runtime_version='5.2.0')
         base = self.root / 'agent'
@@ -186,6 +191,7 @@ class DeploymentTests(unittest.TestCase):
         self.assertEqual(result['status'], 'benchmark_completed')
         self.assertEqual(cmd.call_args.args[0][:2], ['hailortcli', 'benchmark'])
 
+    @unittest.skipIf(os.name == 'nt', 'Pi-side release selection uses POSIX fcntl; Windows host transport is tested separately')
     def test_genai_provider_rejects_vision_benchmark(self):
         bundle = self.bundle(target='hailo10h', runtime_version='5.2.0', runtime_provider='hailort-genai-llm-v1')
         base = self.root / 'agent'
@@ -212,7 +218,7 @@ class DeploymentTests(unittest.TestCase):
     def test_helper_local_status_smoke(self):
         # This checks the actual standalone command path; it never touches Hailo hardware.
         import os
-        env = {**os.environ, 'HOME': str(self.root), 'PYTHONPYCACHEPREFIX': str(self.root / 'cache')}
+        env = {**os.environ, 'HOME': str(self.root), 'USERPROFILE': str(self.root), 'PYTHONPYCACHEPREFIX': str(self.root / 'cache')}
         result = subprocess.run([sys.executable, str(Path(pi_agent.__file__)), '{"action":"status"}'],
                                 capture_output=True, text=True, env=env, timeout=15)
         self.assertEqual(result.returncode, 0, result.stderr)
