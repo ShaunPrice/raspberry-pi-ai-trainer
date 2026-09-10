@@ -14,8 +14,8 @@ Reuse was checked against the existing the LLM-Optimise source README: it docume
 
 | Target | Initial workload | Build environment | Pi runtime profile | Validation |
 |---|---|---|---|---|
-| Hailo-8L | Classification, detection, segmentation, pose where supported | Pinned Model Zoo 2.x + DFC 3.x | `hailo-all`, matched driver/runtime | Owned, not yet connected or tested here |
-| Hailo-8 | Same supported vision families; own target build | Pinned Model Zoo 2.x + DFC 3.x | `hailo-all`, matched driver/runtime | Owned, not yet connected or tested here |
+| Hailo-8L | Classification, detection, segmentation, pose where supported | Model Zoo 2.19.0 + DFC 3.34.0 tested | `hailo-all`; physical test used HailoRT 4.23.0 | Physical synthetic inference passed; settings preserved |
+| Hailo-8 | Same supported vision families; own target build | Model Zoo 2.19.0 + DFC 3.34.0 tested | `hailo-all`, matched driver/runtime | SDK fixture passed; hardware untested |
 | Hailo-10H vision | Supported 10H vision architectures | Separate pinned 10H compiler/toolchain | `hailo-h10-all` | Software development now, hardware test deferred |
 | Hailo-10H LLM/VLM | Supported model families and shapes only | Off-Pi training plus vendor GenAI export/quantisation/compilation recipe | HailoRT GenAI / hailo-ollama as appropriate | SDK and model-specific qualification required; hardware deferred |
 
@@ -88,7 +88,7 @@ Start with SSH host-key verification and explicit host enrollment. A minimal hel
 
 The helper reports OS, architecture, Hailo identity and runtime details. Deployment packages contain hashes, a target/runtime contract, compiled model and optional scripts. The SSH transport stages and validates an uploaded package, selects a release atomically and retains a previous release for rollback. Selecting a release does not auto-execute application scripts or install a system service. Benchmarks are explicit operations: vision uses HailoRT, supported 10H LLM testing uses the configured runtime provider, and script execution is an explicit mode. Raw output and failure states are retained.
 
-`helper/pi_probe.py` and `python -m pi_trainer.device probe SSH_ALIAS` remain read-only diagnostics. The deployment helper implements upload/stage/activation/rollback/test contracts and has software fixture tests; real Pi connection, driver compatibility and inference remain unverified until the user supplies an authorized target. No unrelated robotics host is accessed. See [deployment details](deployment.md).
+`helper/pi_probe.py` and `python -m pi_trainer.device probe SSH_ALIAS` remain read-only diagnostics. The deployment helper implements upload/stage/activation/rollback/test contracts and has software fixture tests; an isolated authorized SSH test subsequently passed physical 8L fixture inference and settings preservation. The helper's complete release activation/rollback workflow still requires a live test. See [deployment details](deployment.md).
 
 ## Existing OS image customisation
 
@@ -115,8 +115,8 @@ Archive extraction must reject traversal and symlinks, verify per-file hashes an
 | Application and data | Four interfaces, persistent projects, uploads/imports, snapshots, group annotations, jobs/logs/cancellation; Mac Aqua and browser training checks passed | OS-specific release testing and continued full-provider regression |
 | Host vision | PyTorch classifier, ONNX export, bounded host sweeps | Representative real dataset quality and target-specific compilation |
 | Host LLM | Transformers/PEFT LoRA, offline default, saved-output quality scoring | Chosen base family, real task quality and vendor recipe compatibility |
-| Hailo compilation | DFC vision adapter; qualified external 10H GenAI recipe contract | Installed licensed SDK and real target-specific HEF compilation |
-| Deployment | Trusted SSH staging, integrity/runtime checks, active-release selection, rollback and explicit benchmarks | Live 8L/8 deployment and inference; all 10H hardware checks deferred |
+| Hailo compilation | DFC vision adapter; qualified external 10H GenAI recipe contract | Representative deployment models and supported 10H GenAI compilation; synthetic vision HEFs passed on all three SDK targets |
+| Deployment | Trusted SSH staging, integrity/runtime checks, active-release selection, rollback and explicit benchmarks | Full helper activation/rollback workflow; 8 and 10H hardware checks. Isolated physical 8L fixture inference passed |
 | Existing images | Copy/decompress, partition checks, release injection, checksum and Docker worker | Real Raspberry Pi OS boot and hardware inference; physical Windows execution |
 | Remote compute | Registered Linux SSH workers, bounded input transfer and verified artifact return | Actual configured worker connection and SDK execution |
 | Distribution | Source-run application, locally built Mac app and companion CLI | Signing/notarization and physical Windows/Linux package validation; CI builds configured but not run |
@@ -125,7 +125,7 @@ The absence of 10H hardware does not block implementing its software path. Missi
 
 ## Current software evidence
 
-The integrated suite has run 78 tests with three opt-in/dependency skips. A real browser-submitted vision job completed using a synthetic 135/14/11 train/validation/test split and exported a 21,725-byte ONNX model. Separate tiny vision and LLM provider fixtures produced real checkpoints/adapters. Native Aqua project creation and both LLM/workflow dialogs passed; the browser reported no console errors in the current smoke check. None of these fixture results establishes real-world model accuracy, Hailo compiler compatibility or physical inference.
+The integrated suite has run 78 tests with three opt-in/dependency skips. A real browser-submitted vision job completed using a synthetic 135/14/11 train/validation/test split and exported a 21,725-byte ONNX model. Separate tiny vision and LLM provider fixtures produced real checkpoints/adapters. Native Aqua project creation and both LLM/workflow dialogs passed; the browser reported no console errors in the current smoke check. These original host fixtures do not establish real-world model accuracy. Subsequent tests passed real SDK vision compilation/emulation on all three targets and physical 8L fixture inference with original settings preserved; see the [current verification record](../validation/README.md).
 
 ## Inputs needed for real hardware qualification
 

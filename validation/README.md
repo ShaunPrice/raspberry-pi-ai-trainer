@@ -16,7 +16,7 @@ The following checks were recorded on 10 September 2026. Raw logs, screenshots, 
 | Image customisation | Injection, filesystem checks and hash readback passed | Synthetic ext4, original image unchanged |
 | Mac archive signature | Extracted archive passed strict ad-hoc verification | Not Developer ID signed or notarized |
 
-These are overlapping suites. Synthetic fixtures validate software behavior, not useful model accuracy, Hailo compatibility or Raspberry Pi bootability. Hardware inference, licensed SDK compilation, real SSH workers, Windows execution and Linux native desktop acceptance remain unverified by these local records. Hosted CI reports its own current results separately.
+These are overlapping suites. Synthetic fixtures validate software behavior, not useful model accuracy, Hailo compatibility or Raspberry Pi bootability. This initial baseline did not test hardware inference, licensed SDK compilation or Windows execution. Subsequent sections record those later checks, including physical 8L inference and settings preservation. Linux native desktop acceptance remains separate.
 
 ## Reproduce
 
@@ -36,7 +36,7 @@ The portable `host_10h_smoke.py` completed on Mac ARM64 CPU, Mac Apple Metal, Li
 - [Corrected cross-platform unit regression](https://github.com/ShaunPrice/raspberry-pi-ai-trainer/actions/runs/34437344850): all six OS/Python jobs passed. Windows Python 3.11 and 3.12 each ran 80 tests with eight documented platform/optional-dependency skips. This lightweight CI does not install the model frameworks; the separate Windows model run supplies that evidence.
 - Local Mac framework-enabled core run: 80 tests, two skips, no failures. Linux Docker framework-enabled run: 80 tests, one skip, no failures.
 
-No Hailo DFC SDK was installed in these model-test environments. Numerical emulation, compilation and HEF device execution therefore remain unverified. A real deployment-model run awaits the model ID/checkpoint and any required base model. Windows native application packaging remains unverified. See [reproduction instructions](../docs/host-validation.md).
+No Hailo DFC SDK was installed in these model-test environments. Those host-only runs did not test numerical emulation, compilation or HEF device execution; the subsequent vendor SDK and physical 8L sections record those later results. A real deployment-model run awaits the model ID/checkpoint and any required base model. Windows native application packaging remains unverified. See [reproduction instructions](../docs/host-validation.md).
 
 ## Native Windows CPU and NVIDIA GPU — 10 September 2026
 

@@ -44,7 +44,7 @@ Custom HEF registration in Hailo-Ollama is deliberately unsupported. Hailo's pub
 
 ## Validation and boundaries
 
-Automated tests cover bundle tampering/traversal/symlinks/duplicates, cancellation, wrong hardware target/runtime, upload integrity, release activation/rollback and a real local standalone-helper subprocess. Hardware checks are mocked in tests and are clearly fixtures. No Raspberry Pi host was supplied for a live transfer, benchmark, script test, or rollback; Hailo-10H hardware testing is deferred until the device is available.
+Automated tests cover bundle tampering/traversal/symlinks/duplicates, cancellation, wrong hardware target/runtime, upload integrity, release activation/rollback and a real local standalone-helper subprocess. Hardware checks are mocked in tests and are clearly fixtures. A subsequent trusted-SSH test on the owner's Pi 5/Hailo-8L uploaded the synthetic HEF and completed 64 inference frames on HailoRT/firmware 4.23.0. The original detector resumed and 64 backed-up file hashes remained unchanged. This used an isolated test supervisor; it does not establish physical validation of the deployment helper's release activation, cancellation or rollback contracts. Hailo-8 and Hailo-10H hardware testing remain pending.
 
 Hailo primary sources reviewed 10 September 2026: [Hailo model benchmark commands](https://github.com/hailo-ai/hailo_model_zoo/blob/master/docs/BENCHMARKS.rst) and [Hailo GenAI usage and API limits](https://github.com/hailo-ai/hailo_model_zoo_genai/blob/main/docs/USAGE.rst).
 

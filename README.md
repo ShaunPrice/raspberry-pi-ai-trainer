@@ -2,7 +2,9 @@
 
 A local workbench for training models off-Pi, compiling them for Hailo, packaging deployments, customising an existing Raspberry Pi OS image, and testing a Raspberry Pi over a trusted network connection. Native desktop, web, CLI and stdio MCP share one project store and durable job queue.
 
-Hailo-8L and Hailo-8 support vision projects. Hailo-10H supports vision and LLM projects now; physical 10H qualification is deferred until hardware is available. The owner's 8L/8 devices have not been contacted by this work.
+Hailo-8L and Hailo-8 support vision projects. Hailo-10H supports vision and LLM projects now; physical 10H qualification is deferred until hardware is available. The owner's Raspberry Pi 5 with Hailo-8L has passed a physical 64-frame synthetic inference test, with its original detector restored and all 64 backed-up file hashes unchanged. Hailo-8 and Hailo-10H hardware remain untested.
+
+Vision compilation and native/quantised SDK emulation passed for all three targets: DFC 3.34.0 for 8L/8 and DFC 5.4.0 for 10H. These checks validate synthetic fixtures, not deployment-model accuracy. See the [verification record](validation/README.md) and [SDK setup](docs/hailo-sdk-setup.md).
 
 ## Included capabilities
 
