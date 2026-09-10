@@ -1,11 +1,9 @@
 # Pi Trainer walkthrough
 
-The illustrated user guide and narrated video are available in the [tutorial release](https://github.com/ShaunPrice/raspberry-pi-ai-trainer/releases/tag/tutorial-v1).
+The illustrated user guide is available in the [guide release](https://github.com/ShaunPrice/raspberry-pi-ai-trainer/releases/tag/tutorial-v1). [Watch the narrated walkthrough on YouTube](https://youtu.be/O7UQfUIOpUI). Video, caption and forum media downloads are retained locally and are not hosted as GitHub release assets.
 
 - `Pi-Trainer-User-Guide.pdf`: illustrated instructions for all four interfaces.
 - `Pi-Trainer-User-Guide.docx`: editable version of the guide.
-- `Pi-Trainer-Walkthrough.mp4`: 7 minutes 6 seconds, H.264 video with stereo AAC audio.
-- `Pi-Trainer-Walkthrough.srt`: 107 optional caption cues timed to actual narration words, with technical notation such as Hailo-10H, Hailo-8L, Hailo-8, x86-64, DFC 3.34, DFC 5.4, MCP and PEFT.
 
 The video contains actual web-workbench captures recorded during project creation, dataset import, training, packaging and workflow preparation. Idle sections are edited or held. The native overview is an actual application-window screenshot. The training and packaging jobs completed during recording; compiler, image, device and LLM screens demonstrate configuration, not execution. The package uses a previously verified synthetic HEF rather than the colour model trained on screen.
 

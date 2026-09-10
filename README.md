@@ -20,7 +20,7 @@ Vision compilation and native/quantised SDK emulation passed for all three targe
 
 ## User guide and video
 
-Follow the [detailed user guide](docs/user-guide.md), or download the [illustrated PDF, editable Word guide and narrated walkthrough](https://github.com/ShaunPrice/raspberry-pi-ai-trainer/releases/tag/tutorial-v1). The video records a real sample training and packaging workflow, with preparation screens for compilation, existing-image customisation, Pi testing and Hailo-10H LLM work.
+Follow the [detailed user guide](docs/user-guide.md), download the [illustrated PDF and editable Word guide](https://github.com/ShaunPrice/raspberry-pi-ai-trainer/releases/tag/tutorial-v1), or [watch the walkthrough on YouTube](https://youtu.be/O7UQfUIOpUI). The video records a real sample training and packaging workflow, with preparation screens for compilation, existing-image customisation, Pi testing and Hailo-10H LLM work.
 
 ## Get started
 
