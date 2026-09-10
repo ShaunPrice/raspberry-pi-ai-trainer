@@ -27,3 +27,13 @@ docker run --rm --network none --cap-drop ALL --mount "type=bind,src=$PWD,dst=/a
 ```
 
 Set `PI_TRAINER_TEST_DOCKER=1` on the host to enable its Docker image-backend test. Install the optional training dependencies to enable real CPU/ONNX tests. `native_smoke.py` requires a desktop session; `release_smoke.py` requires the locally built macOS console bundle.
+
+## Subsequent board-free host checks — 10 September 2026
+
+The portable `host_10h_smoke.py` completed on Mac ARM64 CPU, Mac Apple Metal, Linux ARM64 Docker CPU and GitHub-hosted Windows x64 CPU. All four verified ONNX/PyTorch output agreement, train-only calibration and disjoint splits, real LoRA training, adapter reload/merge and bounded generation. These used synthetic fixtures, not a supplied deployment checkpoint.
+
+- [Windows model run and downloadable evidence](https://github.com/ShaunPrice/raspberry-pi-ai-trainer/actions/runs/34437019856): model harness passed. The workflow initially failed on a separate temporary-directory cleanup race, subsequently fixed by explicitly waiting for test-owned worker processes to exit.
+- [Corrected cross-platform unit regression](https://github.com/ShaunPrice/raspberry-pi-ai-trainer/actions/runs/34437344850): all six OS/Python jobs passed. Windows Python 3.11 and 3.12 each ran 80 tests with eight documented platform/optional-dependency skips. This lightweight CI does not install the model frameworks; the separate Windows model run supplies that evidence.
+- Local Mac framework-enabled core run: 80 tests, two skips, no failures. Linux Docker framework-enabled run: 80 tests, one skip, no failures.
+
+No Hailo DFC SDK was installed in these model-test environments. Numerical emulation, compilation and HEF device execution therefore remain unverified. A real deployment-model run awaits the model ID/checkpoint and any required base model. Windows native application packaging and GPU execution were not tested. See [reproduction instructions](../docs/host-validation.md).
