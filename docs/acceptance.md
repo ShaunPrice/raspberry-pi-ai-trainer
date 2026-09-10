@@ -35,7 +35,7 @@ The original preparation baseline passed 20 tests. The expanded integrated suite
 7. Run sustained benchmarks with available thermal/memory measurements; identify metrics that are unavailable.
 8. Customise an existing OS image, flash a separately selected medium and verify boot and inference.
 
-The owned Pi 5/Hailo-8L has been contacted over trusted SSH and ran 64 synthetic frames with a custom DFC 3.34.0 HEF on HailoRT/firmware 4.23.0. Its detector was restarted and 64 backed-up file hashes verified unchanged. This clears the isolated fixture load/inference check, not all gates above. T1’s Hailo-8 subsequently passed 64 synthetic frames on HailoRT/firmware 4.24.0 through its existing shared service; 129 backed-up file hashes and the original service/perception PIDs were unchanged. The full deployment-helper activation/rollback workflow remains untested on a real device.
+Tested on Raspberry Pi 5 (8GB) with Raspberry Pi AI HAT+ 13 TOPS (Hailo-8L) and Raspberry Pi AI HAT+ 26 TOPS (Hailo-8). Both completed the isolated synthetic load/inference check. The full deployment-helper activation/rollback workflow and other acceptance gates above remain separate.
 
 ## Existing image acceptance
 

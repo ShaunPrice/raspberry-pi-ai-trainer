@@ -62,15 +62,11 @@ The first 10H run compiled successfully but exposed an emulation harness API mis
 
 These results supersede the earlier missing-SDK blocker for these synthetic vision fixtures. They do not qualify a deployment model or custom LLM. DFC 5.4 documents LoRA compilation from Hailo-provided pre-optimised GenAI HARs, but explicitly does not support GenAI numerical emulation. A matching candidate, vendor assets and adequate compute resources are still required. See [SDK setup and reproduction](../docs/hailo-sdk-setup.md). Proprietary SDKs, manuals and generated model artifacts remain local and excluded from Git.
 
-## Physical Hailo-8L check — 10 September 2026
+## Tested Raspberry Pi hardware — 10 September 2026
 
-The generated 8L vision fixture was tested on a Raspberry Pi 5 with a physical HAILO8L accelerator and HailoRT/firmware 4.23.0. The DFC 3.34.0 HEF hash matched the compiler evidence, the installed runtime parsed it as HAILO8L, and `hailortcli run` completed 64 synthetic input frames with exit code zero. This establishes a real load/inference check for this fixture and runtime combination, not useful model accuracy or a representative throughput benchmark.
+| Computer | AI HAT | Accelerator | HailoRT / firmware | Result |
+|---|---|---|---|---|
+| Raspberry Pi 5 (8GB) | Raspberry Pi AI HAT+ 13 TOPS | Hailo-8L | 4.23.0 | Synthetic inference passed |
+| Raspberry Pi 5 (8GB) | Raspberry Pi AI HAT+ 26 TOPS | Hailo-8 | 4.24.0 | Synthetic inference passed |
 
-Before testing, 64 application/settings files were backed up on the Pi and a hash-verified backup copy was downloaded to the Mac. The existing detector's command, working directory and environment were saved privately. The detector was briefly stopped to release the accelerator and restarted by the test supervisor's cleanup block. All 64 file hashes remained unchanged. A subsequent check confirmed the detector owned the accelerator again, its stream port was listening, and the original application process and HailoRT service remained active. No driver, firmware or system configuration changes were made. Backups and detailed device evidence remain local and excluded from the public repository.
-
-
-## Physical Hailo-8 check — 10 September 2026
-
-T1’s vision Pi reported HAILO8 with HailoRT/firmware 4.24.0. The verified DFC 3.34.0 fixture HEF completed 64 synthetic frames with exit zero. An initial attempt using the default multi-process group was refused as unavailable; using the perception stack’s existing `SHARED` group succeeded. This validates fixture execution, not deployment-model accuracy or representative throughput.
-
-Before testing, 129 tracked/application/runtime configuration files were archived privately on the Pi and a checksum-verified copy downloaded to the Mac. Every file hash remained unchanged afterwards. The vision service, HailoRT service and perception process retained their original PIDs and accelerator ownership throughout. No service was stopped, no driver/firmware/settings were changed, and no motor or autonomy commands were issued. No restoration was necessary because the original state was preserved. Private backups and raw evidence remain excluded from Git.
+Each target completed 64 synthetic inference frames using a DFC 3.34.0 compiled HEF. These checks establish model loading and execution, not deployment-model accuracy or representative throughput. Hailo-10H hardware testing remains pending.
