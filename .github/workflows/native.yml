@@ -1,0 +1,20 @@
+name: Native packages
+on: [workflow_dispatch]
+jobs:
+  package:
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install pyinstaller==6.22.2
+      - run: python -m unittest discover -s tests -v
+      - run: python packaging/build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pi-trainer-${{ matrix.os }}
+          path: dist/native/

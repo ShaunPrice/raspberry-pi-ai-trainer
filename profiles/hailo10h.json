@@ -1,0 +1,24 @@
+{
+  "schema": "pi-trainer/target-profile/v1",
+  "target": "hailo10h",
+  "tasks": ["vision", "llm"],
+  "model_zoo_family": "10H-compatible pinned release",
+  "compiler_family": "10H-compatible pinned release",
+  "compiler_host": "linux-x86_64",
+  "pi_package": "hailo-h10-all",
+  "incompatible_packages": ["hailo-all"],
+  "runtime_version": null,
+  "compiler_version": null,
+  "qualification": "software_in_scope_hardware_test_deferred",
+  "owned_hardware": false,
+  "llm": {
+    "base_model_revision": null,
+    "tokenizer_revision": null,
+    "context_length": null,
+    "quantization": "vendor_recipe_required",
+    "compiler_recipe": null,
+    "runtime_provider": "hailort_genai_or_hailo_ollama",
+    "arbitrary_gguf_import": false,
+    "adapter_loading": "must_be_verified_per_vendor_recipe"
+  }
+}

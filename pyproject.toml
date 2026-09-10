@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "raspberry-pi-ai-trainer"
+version = "0.2.0"
+description = "Cross-platform Hailo training, compilation and Pi deployment workbench"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+dependencies = []
+
+[project.scripts]
+pi-trainer = "pi_trainer.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["pi_trainer*"]
+
+[tool.setuptools.package-data]
+pi_trainer = ["static/*.html", "static/*.js"]
+"pi_trainer.vendor.llm_optimise" = ["LICENSE", "PROVENANCE.json"]

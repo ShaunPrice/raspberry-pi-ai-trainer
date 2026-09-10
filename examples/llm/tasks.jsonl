@@ -1,0 +1,2 @@
+{"id": "tool", "prompt": "Name a tool for measuring diameter.", "expected": "caliper"}
+{"id": "count", "prompt": "Return JSON number 2.", "expected": 2, "evaluator": "json"}

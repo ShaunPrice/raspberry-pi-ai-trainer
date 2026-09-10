@@ -1,0 +1,12 @@
+{
+  "source_repository": "LLM-Optimise (local source checkout)",
+  "source_commit": "52cf113ddd3867199e4d5b7de67aa99221070fd2",
+  "retrieved": "2026-09-10",
+  "files": {
+    "quality.py": "37781adc2513ee402b4d1d19cb5a7d47381cebb3523a31334f46e2f84e796b7b",
+    "planner.py": "a79ba955c55ada01ff85387d20970da88f389e5ced74ded678ddc674c20883bd",
+    "training.py": "9cd7f81d0151b12ba141ff2b6c4979b13b39cdfe0558e78e47f394a131dd85e4"
+  },
+  "changes": "quality/planner/training copied verbatim; config finite/positive extracted; runner replaced by local no-overwrite JSON writer",
+  "license": "MIT Copyright 2026 Shaun Price"
+}

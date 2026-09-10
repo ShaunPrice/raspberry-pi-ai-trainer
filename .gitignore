@@ -1,0 +1,36 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.trainer/
+validation/local-state/
+
+.venv-*/
+.trainer-*/
+
+# Local machine and session state
+.DS_Store
+.playwright-mcp/
+.env
+.env.*
+*.sqlite3
+*.sqlite3-*
+*.db
+*.log
+
+# Validation scripts and public summary are versioned; raw evidence stays local.
+validation/*
+!validation/README.md
+!validation/*.py
+
+# User model weights, training artifacts and disk images
+*.hef
+*.har
+*.onnx
+*.pt
+*.safetensors
+*.gguf
+*.img
+*.img.xz

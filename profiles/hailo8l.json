@@ -1,0 +1,14 @@
+{
+  "schema": "pi-trainer/target-profile/v1",
+  "target": "hailo8l",
+  "tasks": ["vision"],
+  "model_zoo_family": "2.x",
+  "compiler_family": "3.x",
+  "compiler_host": "linux-x86_64",
+  "pi_package": "hailo-all",
+  "incompatible_packages": ["hailo-h10-all"],
+  "runtime_version": null,
+  "compiler_version": null,
+  "qualification": "pending_sdk_and_device_probe",
+  "owned_hardware": true
+}

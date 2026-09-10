@@ -1,0 +1,1 @@
+Synthetic red/blue pipeline fixture only. Not evidence of useful model accuracy. Random pixel variation ensures unique file hashes. Use real independent source groups for production data.
