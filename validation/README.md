@@ -36,4 +36,12 @@ The portable `host_10h_smoke.py` completed on Mac ARM64 CPU, Mac Apple Metal, Li
 - [Corrected cross-platform unit regression](https://github.com/ShaunPrice/raspberry-pi-ai-trainer/actions/runs/34437344850): all six OS/Python jobs passed. Windows Python 3.11 and 3.12 each ran 80 tests with eight documented platform/optional-dependency skips. This lightweight CI does not install the model frameworks; the separate Windows model run supplies that evidence.
 - Local Mac framework-enabled core run: 80 tests, two skips, no failures. Linux Docker framework-enabled run: 80 tests, one skip, no failures.
 
-No Hailo DFC SDK was installed in these model-test environments. Numerical emulation, compilation and HEF device execution therefore remain unverified. A real deployment-model run awaits the model ID/checkpoint and any required base model. Windows native application packaging and GPU execution were not tested. See [reproduction instructions](../docs/host-validation.md).
+No Hailo DFC SDK was installed in these model-test environments. Numerical emulation, compilation and HEF device execution therefore remain unverified. A real deployment-model run awaits the model ID/checkpoint and any required base model. Windows native application packaging remains unverified. See [reproduction instructions](../docs/host-validation.md).
+
+## Native Windows CPU and NVIDIA GPU — 10 September 2026
+
+Source commit `5be79afe267cdfd5a6023bae47230e19c0623b55` was tested on a physical Windows 11 workstation through SSH, in a fresh isolated Python 3.12.10 environment. PyTorch 2.14.0+cu130 executed a CUDA matrix operation on an RTX 5090 Laptop GPU (compute capability 12.0). The full suite passed: 80 tests, seven platform/optional-feature skips, no failures.
+
+Separate CPU and CUDA runs of `host_10h_smoke.py` passed vision training, ONNX comparison, train-only calibration, split separation, LoRA training, adapter reload/merge and generation. Maximum ONNX differences were 7.45e-9 (CPU) and 1.49e-8 (CUDA); maximum adapter merge differences were 6.71e-8 and 8.94e-8. Both generated eight tokens. These tiny synthetic fixtures establish pipeline operation, not useful model accuracy or comparative GPU performance. Downloaded evidence archives and model artifact hashes were verified; raw evidence remains local.
+
+Ubuntu 24.04 x86-64 under WSL was also checked for architecture and GPU visibility. No Hailo SDK was found in the environments checked. This was a WSL preflight only; the Linux model tests above ran in the ARM64 Docker container. Successful PyTorch CUDA execution does not establish Hailo SDK GPU compatibility, numerical emulation, HEF compilation or 10H execution.

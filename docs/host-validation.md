@@ -12,7 +12,7 @@ Install the optional training dependencies described in [training setup](trainin
 python validation/host_10h_smoke.py --output validation/host-test-1 --device cpu
 ```
 
-On a compatible Mac, `--device mps` tests Apple Metal. Use an empty output directory for every run so previous evidence remains intact. The generated report explicitly separates successful host checks from unavailable vendor and hardware gates.
+On a compatible Mac, `--device mps` tests Apple Metal. With a compatible CUDA-enabled PyTorch installation, `--device cuda` tests NVIDIA GPU training. Use an empty output directory for every run so previous evidence remains intact. The generated report explicitly separates successful host checks from unavailable vendor and hardware gates. Native Windows CPU and RTX 5090 Laptop CUDA runs are recorded in the [verification record](../validation/README.md).
 
 The manual GitHub workflow `Hailo-10H Windows host validation` uses a standard Windows runner, installs CPU dependencies, runs the full suite and the portable harness, and uploads results. POSIX-only tests for the Pi-side release lock are skipped on Windows; Windows host transport tests remain enabled. Hosted Windows results do not establish access to a user's Windows workstation or validate its GPU configuration.
 
