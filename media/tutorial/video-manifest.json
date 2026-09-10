@@ -1,0 +1,110 @@
+{
+  "duration_seconds": 374.3333333333333,
+  "resolution": [
+    1600,
+    900
+  ],
+  "fps": 30,
+  "capture": "Actual browser screenshots sampled during real UI interaction; idle portions held or edited. Native interface is an actual window screenshot.",
+  "caption_timing": "Sentence-level estimated timing from measured chapter narration duration.",
+  "chapters": [
+    {
+      "id": "01-introduction",
+      "start": 0,
+      "duration": 27.7,
+      "recording_labels": [],
+      "voice_seconds": 25.688395833333335
+    },
+    {
+      "id": "02-project",
+      "start": 27.7,
+      "duration": 27.466666666666665,
+      "recording_labels": [
+        "02-create-project",
+        "02-created"
+      ],
+      "voice_seconds": 25.440958333333334
+    },
+    {
+      "id": "03-data",
+      "start": 55.166666666666664,
+      "duration": 34.0,
+      "recording_labels": [
+        "03-import-correct",
+        "03-data-workspace"
+      ],
+      "voice_seconds": 31.977375
+    },
+    {
+      "id": "04-training",
+      "start": 89.16666666666666,
+      "duration": 41.36666666666667,
+      "recording_labels": [
+        "04-training-inputs",
+        "04-training-run",
+        "04-training-result"
+      ],
+      "voice_seconds": 39.3618125
+    },
+    {
+      "id": "05-compile",
+      "start": 130.53333333333333,
+      "duration": 38.43333333333333,
+      "recording_labels": [
+        "05-optimise",
+        "05-compile-inputs"
+      ],
+      "voice_seconds": 36.41641666666667
+    },
+    {
+      "id": "06-package",
+      "start": 168.96666666666667,
+      "duration": 32.266666666666666,
+      "recording_labels": [
+        "06-package-run"
+      ],
+      "voice_seconds": 30.259104166666667
+    },
+    {
+      "id": "07-image",
+      "start": 201.23333333333335,
+      "duration": 35.333333333333336,
+      "recording_labels": [
+        "07-image"
+      ],
+      "voice_seconds": 33.30104166666667
+    },
+    {
+      "id": "08-device",
+      "start": 236.5666666666667,
+      "duration": 40.266666666666666,
+      "recording_labels": [
+        "08-device"
+      ],
+      "voice_seconds": 38.2408125
+    },
+    {
+      "id": "09-llm",
+      "start": 276.83333333333337,
+      "duration": 40.53333333333333,
+      "recording_labels": [
+        "09-llm"
+      ],
+      "voice_seconds": 38.51891666666667
+    },
+    {
+      "id": "10-interfaces",
+      "start": 317.3666666666667,
+      "duration": 35.2,
+      "recording_labels": [],
+      "voice_seconds": 33.196958333333335
+    },
+    {
+      "id": "11-ending",
+      "start": 352.56666666666666,
+      "duration": 21.766666666666666,
+      "recording_labels": [],
+      "voice_seconds": 16.755333333333333
+    }
+  ]
+}

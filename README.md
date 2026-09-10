@@ -18,6 +18,10 @@ Vision compilation and native/quantised SDK emulation passed for all three targe
 
 **Implemented providers still need their real dependencies.** Training frameworks, licensed Hailo SDKs, compatible base models, Docker and Pi runtimes are not bundled. Missing dependencies fail explicitly. A 10H compiler recipe must be qualified for the selected model; there is no generic GGUF-to-HEF conversion. Host tests do not establish hardware performance or bootability.
 
+## User guide and video
+
+Follow the [detailed user guide](docs/user-guide.md), or download the [illustrated PDF, editable Word guide and narrated walkthrough](https://github.com/ShaunPrice/raspberry-pi-ai-trainer/releases/tag/tutorial-v1). The video records a real sample training and packaging workflow, with preparation screens for compilation, existing-image customisation, Pi testing and Hailo-10H LLM work.
+
 ## Get started
 
 ```sh

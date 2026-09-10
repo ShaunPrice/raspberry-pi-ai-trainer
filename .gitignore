@@ -38,3 +38,9 @@ validation/*
 # Locally supplied proprietary vendor SDKs and drivers
 Hailo_SDK/
 Hailo-SDK/
+
+# Tutorial production media and distributable binaries are release assets.
+media/tutorial/*
+!media/tutorial/README.md
+!media/tutorial/narration.json
+!media/tutorial/video-manifest.json
