@@ -15,7 +15,7 @@ Reuse was checked against the existing the LLM-Optimise source README: it docume
 | Target | Initial workload | Build environment | Pi runtime profile | Validation |
 |---|---|---|---|---|
 | Hailo-8L | Classification, detection, segmentation, pose where supported | Model Zoo 2.19.0 + DFC 3.34.0 tested | `hailo-all`; physical test used HailoRT 4.23.0 | Physical synthetic inference passed; settings preserved |
-| Hailo-8 | Same supported vision families; own target build | Model Zoo 2.19.0 + DFC 3.34.0 tested | `hailo-all`, matched driver/runtime | SDK fixture passed; hardware untested |
+| Hailo-8 | Same supported vision families; own target build | Model Zoo 2.19.0 + DFC 3.34.0 tested | `hailo-all`, matched driver/runtime | Physical synthetic inference passed; settings and perception processes preserved |
 | Hailo-10H vision | Supported 10H vision architectures | Separate pinned 10H compiler/toolchain | `hailo-h10-all` | Software development now, hardware test deferred |
 | Hailo-10H LLM/VLM | Supported model families and shapes only | Off-Pi training plus vendor GenAI export/quantisation/compilation recipe | HailoRT GenAI / hailo-ollama as appropriate | SDK and model-specific qualification required; hardware deferred |
 
@@ -116,7 +116,7 @@ Archive extraction must reject traversal and symlinks, verify per-file hashes an
 | Host vision | PyTorch classifier, ONNX export, bounded host sweeps | Representative real dataset quality and target-specific compilation |
 | Host LLM | Transformers/PEFT LoRA, offline default, saved-output quality scoring | Chosen base family, real task quality and vendor recipe compatibility |
 | Hailo compilation | DFC vision adapter; qualified external 10H GenAI recipe contract | Representative deployment models and supported 10H GenAI compilation; synthetic vision HEFs passed on all three SDK targets |
-| Deployment | Trusted SSH staging, integrity/runtime checks, active-release selection, rollback and explicit benchmarks | Full helper activation/rollback workflow; 8 and 10H hardware checks. Isolated physical 8L fixture inference passed |
+| Deployment | Trusted SSH staging, integrity/runtime checks, active-release selection, rollback and explicit benchmarks | Full helper activation/rollback workflow; 10H hardware checks. Isolated physical 8L and 8 fixture inference passed |
 | Existing images | Copy/decompress, partition checks, release injection, checksum and Docker worker | Real Raspberry Pi OS boot and hardware inference; physical Windows execution |
 | Remote compute | Registered Linux SSH workers, bounded input transfer and verified artifact return | Actual configured worker connection and SDK execution |
 | Distribution | Source-run application, locally built Mac app and companion CLI | Signing/notarization and physical Windows/Linux package validation; CI builds configured but not run |
