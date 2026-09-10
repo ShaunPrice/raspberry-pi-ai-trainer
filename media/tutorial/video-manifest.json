@@ -1,110 +1,114 @@
 {
-  "duration_seconds": 374.3333333333333,
+  "duration_seconds": 425.53333333333336,
   "resolution": [
     1600,
     900
   ],
   "fps": 30,
   "capture": "Actual browser screenshots sampled during real UI interaction; idle portions held or edited. Native interface is an actual window screenshot.",
-  "caption_timing": "Sentence-level estimated timing from measured chapter narration duration.",
+  "voice_provider": "ElevenLabs",
+  "voice": "Ellen - Serious, Direct and Confident",
+  "voice_model": "Eleven v3",
+  "voice_delay_seconds": 0.7,
+  "caption_timing": "Actual per-word audio alignment with reviewed technical notation",
   "chapters": [
     {
       "id": "01-introduction",
       "start": 0,
-      "duration": 27.7,
+      "duration": 28.766666666666666,
       "recording_labels": [],
-      "voice_seconds": 25.688395833333335
+      "voice_seconds": 26.749396
     },
     {
       "id": "02-project",
-      "start": 27.7,
-      "duration": 27.466666666666665,
+      "start": 28.766666666666666,
+      "duration": 28.6,
       "recording_labels": [
         "02-create-project",
         "02-created"
       ],
-      "voice_seconds": 25.440958333333334
+      "voice_seconds": 26.592667
     },
     {
       "id": "03-data",
-      "start": 55.166666666666664,
-      "duration": 34.0,
+      "start": 57.36666666666667,
+      "duration": 36.6,
       "recording_labels": [
         "03-import-correct",
         "03-data-workspace"
       ],
-      "voice_seconds": 31.977375
+      "voice_seconds": 34.586125
     },
     {
       "id": "04-training",
-      "start": 89.16666666666666,
-      "duration": 41.36666666666667,
+      "start": 93.96666666666667,
+      "duration": 55.333333333333336,
       "recording_labels": [
         "04-training-inputs",
         "04-training-run",
         "04-training-result"
       ],
-      "voice_seconds": 39.3618125
+      "voice_seconds": 53.315917
     },
     {
       "id": "05-compile",
-      "start": 130.53333333333333,
-      "duration": 38.43333333333333,
+      "start": 149.3,
+      "duration": 49.1,
       "recording_labels": [
         "05-optimise",
         "05-compile-inputs"
       ],
-      "voice_seconds": 36.41641666666667
+      "voice_seconds": 47.072667
     },
     {
       "id": "06-package",
-      "start": 168.96666666666667,
-      "duration": 32.266666666666666,
+      "start": 198.4,
+      "duration": 38.3,
       "recording_labels": [
         "06-package-run"
       ],
-      "voice_seconds": 30.259104166666667
+      "voice_seconds": 36.284083
     },
     {
       "id": "07-image",
-      "start": 201.23333333333335,
-      "duration": 35.333333333333336,
+      "start": 236.7,
+      "duration": 39.8,
       "recording_labels": [
         "07-image"
       ],
-      "voice_seconds": 33.30104166666667
+      "voice_seconds": 37.799188
     },
     {
       "id": "08-device",
-      "start": 236.5666666666667,
-      "duration": 40.266666666666666,
+      "start": 276.5,
+      "duration": 42.766666666666666,
       "recording_labels": [
         "08-device"
       ],
-      "voice_seconds": 38.2408125
+      "voice_seconds": 40.751021
     },
     {
       "id": "09-llm",
-      "start": 276.83333333333337,
-      "duration": 40.53333333333333,
+      "start": 319.26666666666665,
+      "duration": 45.1,
       "recording_labels": [
         "09-llm"
       ],
-      "voice_seconds": 38.51891666666667
+      "voice_seconds": 43.075917
     },
     {
       "id": "10-interfaces",
-      "start": 317.3666666666667,
-      "duration": 35.2,
+      "start": 364.3666666666667,
+      "duration": 38.6,
       "recording_labels": [],
-      "voice_seconds": 33.196958333333335
+      "voice_seconds": 36.597563
     },
     {
       "id": "11-ending",
-      "start": 352.56666666666666,
-      "duration": 21.766666666666666,
+      "start": 402.9666666666667,
+      "duration": 22.566666666666666,
       "recording_labels": [],
-      "voice_seconds": 16.755333333333333
+      "voice_seconds": 17.554292
     }
   ]
 }
